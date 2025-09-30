@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Эксмо — База талантов</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>ЭКСМО</h1>
+                    <span>База талантов</span>
+                </div>
+                
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Поиск по имени или навыкам...">
+                </div>
+                
+                <nav class="nav">
+                    <a href="#" class="nav-link active">Каталог</a>
+                    <a href="#" class="nav-link">Как это работает</a>
+                    <button class="btn btn-outline" onclick="openModal('loginModal')">Войти</button>
+                    <button class="btn btn-primary" onclick="openModal('registerModal')">Присоединиться</button>
+                </nav>
+                
+                <!-- Mobile menu button -->
+                <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav" id="mobileNav">
+        <a href="#" class="mobile-nav-link active">Каталог</a>
+        <a href="#" class="mobile-nav-link">Как это работает</a>
+        <button class="btn btn-outline mobile-btn" onclick="openModal('loginModal')">Войти</button>
+        <button class="btn btn-primary mobile-btn" onclick="openModal('registerModal')">Присоединиться</button>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <div class="content-wrapper">
+                <!-- Filters Sidebar -->
+                <aside class="filters-sidebar" id="filtersSidebar">
+                    <div class="filters-header">
+                        <h3>Фильтры</h3>
+                        <button class="clear-filters" onclick="clearFilters()">Очистить</button>
+                    </div>
+
+                    <div class="filter-group">
+                        <h4>Специализация</h4>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="specialization" value="covers">
+                            <span>Дизайн обложек</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="specialization" value="illustrations">
+                            <span>Иллюстрации</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="specialization" value="lettering">
+                            <span>Леттеринг</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="specialization" value="layout">
+                            <span>Внутренний макет</span>
+                        </label>
+                    </div>
+
+                    <div class="filter-group">
+                        <h4>Жанры</h4>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="genre" value="fantasy">
+                            <span>Фантастика</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="genre" value="detective">
+                            <span>Детективы</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="genre" value="children">
+                            <span>Детская</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="genre" value="romance">
+                            <span>Романы</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="genre" value="nonfiction">
+                            <span>Нон-фикшн</span>
+                        </label>
+                    </div>
+
+                    <div class="filter-group">
+                        <h4>Стили</h4>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="style" value="realistic">
+                            <span>Реализм</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="style" value="cartoon">
+                            <span>Мультяшный</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="style" value="minimal">
+                            <span>Минимализм</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="style" value="vintage">
+                            <span>Винтаж</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="style" value="digital">
+                            <span>Digital art</span>
+                        </label>
+                    </div>
+
+                    <div class="filter-group">
+                        <h4>Опыт</h4>
+                        <label class="radio-label">
+                            <input type="radio" name="experience" value="any">
+                            <span>Любой</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="experience" value="newcomer">
+                            <span>Новички</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="experience" value="1-3">
+                            <span>1-3 года</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="experience" value="3+">
+                            <span>3+ лет</span>
+                        </label>
+                    </div>
+
+                    <div class="filter-group">
+                        <h4>Доступность</h4>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="availability" value="available">
+                            <span>Свободен</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="availability" value="busy">
+                            <span>Занят</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="availability" value="considering">
+                            <span>Рассмотрю предложения</span>
+                        </label>
+                    </div>
+                </aside>
+
+                <!-- Artists Grid -->
+                <section class="artists-grid-section">
+                    <div class="grid-header">
+                        <div class="results-info">
+                            <span id="resultsCount">Найдено: 247 творцов</span>
+                        </div>
+                        <div class="sort-controls">
+                            <select id="sortSelect" onchange="sortResults()">
+                                <option value="rating">По рейтингу</option>
+                                <option value="name">По имени</option>
+                                <option value="recent">Недавние</option>
+                                <option value="popular">Популярные</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="artists-grid" id="artistsGrid">
+                        <!-- Artist cards will be dynamically loaded here -->
+                    </div>
+
+                    <div class="load-more-section">
+                        <button class="btn btn-outline load-more-btn" onclick="loadMoreArtists()">
+                            Показать еще
+                        </button>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Mobile Filter Button -->
+    <button class="mobile-filter-btn" onclick="toggleMobileFilters()">
+        <i class="fas fa-filter"></i>
+        Фильтры
+    </button>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Вход в систему</h3>
+                <button class="modal-close" onclick="closeModal('loginModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Пароль</label>
+                        <input type="password" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox">
+                            <span>Запомнить меня</span>
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-primary full-width">Войти</button>
+                </form>
+                <div class="modal-footer">
+                    <p>Нет аккаунта? <a href="#" onclick="switchModal('loginModal', 'registerModal')">Зарегистрироваться</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal" id="registerModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Регистрация</h3>
+                <button class="modal-close" onclick="closeModal('registerModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label>Тип аккаунта</label>
+                        <select id="userType" onchange="updateRegistrationForm()">
+                            <option value="artist">Творец (дизайнер/иллюстратор)</option>
+                            <option value="editor">Редактор Эксмо</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Имя и фамилия</label>
+                        <input type="text" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Пароль</label>
+                        <input type="password" required>
+                    </div>
+                    <div id="artistFields" class="artist-fields">
+                        <div class="form-group">
+                            <label>Специализация</label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="reg_specialization" value="covers">
+                                    <span>Дизайн обложек</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="reg_specialization" value="illustrations">
+                                    <span>Иллюстрации</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="reg_specialization" value="lettering">
+                                    <span>Леттеринг</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="reg_specialization" value="layout">
+                                    <span>Внутренний макет</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Краткое описание</label>
+                            <textarea placeholder="Расскажите о себе и своем опыте в 2-3 предложениях"></textarea>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary full-width">Зарегистрироваться</button>
+                </form>
+                <div class="modal-footer">
+                    <p>Уже есть аккаунт? <a href="#" onclick="switchModal('registerModal', 'loginModal')">Войти</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/filters.js"></script>
+    <script src="js/modal.js"></script>
+</body>
+</html>

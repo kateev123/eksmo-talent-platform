@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профиль художника — Эксмо База талантов</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/profile.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html" style="text-decoration: none; color: inherit;">
+                        <h1>ЭКСМО</h1>
+                        <span>База талантов</span>
+                    </a>
+                </div>
+                
+                <nav class="nav">
+                    <a href="index.html" class="nav-link">← Назад к каталогу</a>
+                    <button class="btn btn-outline" onclick="openModal('loginModal')">Войти</button>
+                    <button class="btn btn-primary" onclick="openModal('registerModal')">Присоединиться</button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Profile Content -->
+    <main class="profile-main">
+        <div class="container">
+            <!-- Profile Header -->
+            <section class="profile-header">
+                <div class="profile-info">
+                    <div class="profile-avatar">
+                        <img id="profileImage" src="" alt="Profile Image">
+                        <div class="availability-indicator" id="availabilityIndicator">
+                            <span id="availabilityText">Доступен</span>
+                        </div>
+                    </div>
+                    <div class="profile-details">
+                        <div class="profile-name">
+                            <h1 id="profileName">Загрузка...</h1>
+                            <span class="verified-badge" id="verifiedBadge" style="display: none;">
+                                <i class="fas fa-check-circle"></i>
+                                Верифицирован
+                            </span>
+                        </div>
+                        <div class="profile-specializations" id="profileSpecs">
+                            
+                        </div>
+                        <div class="profile-location" id="profileLocation">
+                            
+                        </div>
+                        <div class="profile-rating">
+                            <div class="rating-stars" id="ratingStars">
+                                
+                            </div>
+                            <span class="rating-text" id="ratingText">0 (0 отзывов)</span>
+                        </div>
+                        <div class="profile-stats">
+                            <div class="stat">
+                                <span class="stat-value" id="completedProjects">0</span>
+                                <span class="stat-label">Проектов</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-value" id="experienceYears">0</span>
+                                <span class="stat-label">Опыт</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-value" id="responseTime">1</span>
+                                <span class="stat-label">Дни ответа</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="profile-actions">
+                    <button class="btn btn-primary" onclick="contactArtist()" id="contactBtn">
+                        <i class="fas fa-envelope"></i>
+                        Связаться
+                    </button>
+                    <button class="btn btn-outline" onclick="addToFavorites()" id="favoriteBtn">
+                        <i class="far fa-heart"></i>
+                        В избранное
+                    </button>
+                    <button class="btn btn-outline" onclick="shareProfile()" id="shareBtn">
+                        <i class="fas fa-share"></i>
+                        Поделиться
+                    </button>
+                </div>
+            </section>
+
+            <!-- Profile Navigation -->
+            <nav class="profile-nav">
+                <button class="profile-nav-btn active" onclick="switchProfileTab('portfolio')">
+                    Портфолио
+                </button>
+                <button class="profile-nav-btn" onclick="switchProfileTab('about')">
+                    О себе
+                </button>
+                <button class="profile-nav-btn" onclick="switchProfileTab('reviews')">
+                    Отзывы <span id="reviewsCount">(0)</span>
+                </button>
+                <button class="profile-nav-btn" onclick="switchProfileTab('experience')">
+                    Опыт работы
+                </button>
+            </nav>
+
+            <!-- Profile Content Tabs -->
+            <div class="profile-content">
+                <!-- Portfolio Tab -->
+                <section id="portfolioTab" class="profile-tab active">
+                    <div class="portfolio-filters">
+                        <button class="filter-btn active" onclick="filterPortfolio('all')">Все работы</button>
+                        <button class="filter-btn" onclick="filterPortfolio('covers')">Обложки</button>
+                        <button class="filter-btn" onclick="filterPortfolio('illustrations')">Иллюстрации</button>
+                        <button class="filter-btn" onclick="filterPortfolio('lettering')">Леттеринг</button>
+                        <button class="filter-btn" onclick="filterPortfolio('layout')">Макеты</button>
+                    </div>
+                    
+                    <div class="portfolio-grid" id="portfolioGrid">
+                        <!-- Portfolio items will be loaded here -->
+                    </div>
+                </section>
+
+                <!-- About Tab -->
+                <section id="aboutTab" class="profile-tab">
+                    <div class="about-content">
+                        <div class="about-description">
+                            <h3>Описание</h3>
+                            <p id="artistBio">Загрузка биографии...</p>
+                        </div>
+                        
+                        <div class="about-skills">
+                            <h3>Навыки и специализации</h3>
+                            <div class="skills-grid" id="skillsGrid">
+                                <!-- Skills will be loaded here -->
+                            </div>
+                        </div>
+                        
+                        <div class="about-genres">
+                            <h3>Жанры</h3>
+                            <div class="genres-list" id="genresList">
+                                <!-- Genres will be loaded here -->
+                            </div>
+                        </div>
+                        
+                        <div class="about-contact">
+                            <h3>Контакты</h3>
+                            <div class="contact-info" id="contactInfo">
+                                <!-- Contact info will be loaded here -->
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Reviews Tab -->
+                <section id="reviewsTab" class="profile-tab">
+                    <div class="reviews-header">
+                        <div class="reviews-summary">
+                            <div class="overall-rating">
+                                <span class="rating-number" id="overallRating">0.0</span>
+                                <div class="rating-stars" id="overallStars"></div>
+                                <span class="rating-count" id="totalReviews">0 отзывов</span>
+                            </div>
+                            
+                            <div class="rating-breakdown" id="ratingBreakdown">
+                                <!-- Rating breakdown will be loaded here -->
+                            </div>
+                        </div>
+                        
+                        <div class="reviews-actions">
+                            <button class="btn btn-primary" onclick="openReviewModal()" id="writeReviewBtn" style="display: none;">
+                                Написать отзыв
+                            </button>
+                            <div class="reviews-sort">
+                                <select onchange="sortReviews(this.value)">
+                                    <option value="newest">Сначала новые</option>
+                                    <option value="oldest">Сначала старые</option>
+                                    <option value="highest">Высокая оценка</option>
+                                    <option value="lowest">Низкая оценка</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="reviews-list" id="reviewsList">
+                        <!-- Reviews will be loaded here -->
+                    </div>
+                </section>
+
+                <!-- Experience Tab -->
+                <section id="experienceTab" class="profile-tab">
+                    <div class="experience-content">
+                        <div class="projects-history">
+                            <h3>История проектов</h3>
+                            <div class="projects-timeline" id="projectsTimeline">
+                                <!-- Projects timeline will be loaded here -->
+                            </div>
+                        </div>
+                        
+                        <div class="achievements">
+                            <h3>Достижения</h3>
+                            <div class="achievements-grid" id="achievementsGrid">
+                                <!-- Achievements will be loaded here -->
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Review Modal -->
+    <div class="modal" id="reviewModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Написать отзыв</h3>
+                <button class="modal-close" onclick="closeModal('reviewModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="reviewForm">
+                    <div class="form-group">
+                        <label>Название проекта</label>
+                        <input type="text" name="project_name" required placeholder="Например: Обложка для 'Война и мир'">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Общая оценка</label>
+                        <div class="rating-input" id="ratingInput">
+                            <span class="rating-star" onclick="setRating(1)">☆</span>
+                            <span class="rating-star" onclick="setRating(2)">☆</span>
+                            <span class="rating-star" onclick="setRating(3)">☆</span>
+                            <span class="rating-star" onclick="setRating(4)">☆</span>
+                            <span class="rating-star" onclick="setRating(5)">☆</span>
+                        </div>
+                        <input type="hidden" name="rating" id="selectedRating" required>
+                    </div>
+                    
+                    <div class="detailed-ratings">
+                        <div class="rating-category">
+                            <label>Качество работы</label>
+                            <select name="work_quality" required>
+                                <option value="">Выберите оценку</option>
+                                <option value="5">Отлично</option>
+                                <option value="4">Хорошо</option>
+                                <option value="3">Удовлетворительно</option>
+                                <option value="2">Плохо</option>
+                                <option value="1">Очень плохо</option>
+                            </select>
+                        </div>
+                        
+                        <div class="rating-category">
+                            <label>Коммуникация</label>
+                            <select name="communication" required>
+                                <option value="">Выберите оценку</option>
+                                <option value="5">Отлично</option>
+                                <option value="4">Хорошо</option>
+                                <option value="3">Удовлетворительно</option>
+                                <option value="2">Плохо</option>
+                                <option value="1">Очень плохо</option>
+                            </select>
+                        </div>
+                        
+                        <div class="rating-category">
+                            <label>Соблюдение сроков</label>
+                            <select name="deadlines" required>
+                                <option value="">Выберите оценку</option>
+                                <option value="5">Отлично</option>
+                                <option value="4">Хорошо</option>
+                                <option value="3">Удовлетворительно</option>
+                                <option value="2">Плохо</option>
+                                <option value="1">Очень плохо</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Текст отзыва</label>
+                        <textarea name="review_text" rows="4" required placeholder="Расскажите о вашем опыте работы с этим художником..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="would_work_again">
+                            <span>Готов работать снова</span>
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary full-width">Опубликовать отзыв</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Modal -->
+    <div class="modal" id="contactModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Связаться с художником</h3>
+                <button class="modal-close" onclick="closeModal('contactModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="contact-options">
+                    <div class="contact-option" id="emailContact">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p id="artistEmail">loading...</p>
+                        </div>
+                        <button class="btn btn-outline" onclick="copyToClipboard('artistEmail')">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="contact-option" id="phoneContact" style="display: none;">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Телефон</h4>
+                            <p id="artistPhone"></p>
+                        </div>
+                        <button class="btn btn-outline" onclick="copyToClipboard('artistPhone')">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="contact-option" id="telegramContact" style="display: none;">
+                        <i class="fab fa-telegram"></i>
+                        <div>
+                            <h4>Telegram</h4>
+                            <p id="artistTelegram"></p>
+                        </div>
+                        <button class="btn btn-primary" onclick="openTelegram()">
+                            Открыть
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="contact-note">
+                    <i class="fas fa-info-circle"></i>
+                    <p>Контактная информация доступна только зарегистрированным редакторам Эксмо.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Include all JS files -->
+    <script src="js/main.js"></script>
+    <script src="js/modal.js"></script>
+    <script src="js/profile.js"></script>
+</body>
+</html>

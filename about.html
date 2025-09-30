@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Как это работает — Эксмо База талантов</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .how-it-works {
+            padding: 60px 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+        
+        .hero-section {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .hero-section h1 {
+            font-size: 48px;
+            font-weight: 700;
+            color: #000;
+            margin-bottom: 20px;
+        }
+        
+        .hero-section p {
+            font-size: 20px;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        
+        .step-card {
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .step-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .step-icon {
+            width: 80px;
+            height: 80px;
+            background: #007bff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 32px;
+            color: white;
+        }
+        
+        .step-number {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: #fbbf24;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .step-card h3 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #000;
+        }
+        
+        .step-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .features-section {
+            background: white;
+            padding: 60px 0;
+            margin: 60px 0;
+            border-radius: 20px;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-item {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .feature-icon {
+            font-size: 48px;
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+        
+        .feature-item h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #000;
+        }
+        
+        .feature-item p {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .cta-section {
+            text-align: center;
+            padding: 60px 40px;
+            background: #007bff;
+            border-radius: 20px;
+            color: white;
+        }
+        
+        .cta-section h2 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        
+        .cta-section p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn-light {
+            background: white;
+            color: #007bff;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-light:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        @media (max-width: 768px) {
+            .hero-section h1 {
+                font-size: 36px;
+            }
+            
+            .steps-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html" style="text-decoration: none; color: inherit;">
+                        <h1>ЭКСМО</h1>
+                        <span>База талантов</span>
+                    </a>
+                </div>
+                
+                <nav class="nav">
+                    <a href="index.html" class="nav-link">Каталог</a>
+                    <a href="about.html" class="nav-link active">Как это работает</a>
+                    <button class="btn btn-outline" onclick="openModal('loginModal')">Войти</button>
+                    <button class="btn btn-primary" onclick="openModal('registerModal')">Присоединиться</button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="how-it-works">
+        <div class="container">
+            <!-- Hero Section -->
+            <section class="hero-section">
+                <h1>Как работает платформа</h1>
+                <p>Простая и удобная система для поиска талантливых дизайнеров и иллюстраторов, а также для развития карьеры в книжной индустрии</p>
+            </section>
+
+            <!-- Steps for Artists -->
+            <section class="steps-section">
+                <h2 style="text-align: center; margin-bottom: 40px; font-size: 32px; color: #000;">Для художников и дизайнеров</h2>
+                <div class="steps-grid">
+                    <div class="step-card">
+                        <div class="step-icon" style="position: relative;">
+                            <i class="fas fa-user-plus"></i>
+                            <div class="step-number">1</div>
+                        </div>
+                        <h3>Регистрация</h3>
+                        <p>Создайте профиль, укажите свои навыки и специализации. Загрузите лучшие работы из портфолио.</p>
+                    </div>
+                    
+                    <div class="step-card">
+                        <div class="step-icon" style="position: relative;">
+                            <i class="fas fa-palette"></i>
+                            <div class="step-number">2</div>
+                        </div>
+                        <h3>Портфолио</h3>
+                        <p>Добавляйте свои работы, указывайте жанры и стили. Получайте отзывы и повышайте рейтинг.</p>
+                    </div>
+                    
+                    <div class="step-card">
+                        <div class="step-icon" style="position: relative;">
+                            <i class="fas fa-handshake"></i>
+                            <div class="step-number">3</div>
+                        </div>
+                        <h3>Сотрудничество</h3>
+                        <p>Редакторы Эксмо находят вас через поиск и фильтры. Работайте над интересными проектами.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Steps for Editors -->
+            <section class="steps-section">
+                <h2 style="text-align: center; margin-bottom: 40px; font-size: 32px; color: #000;">Для редакторов Эксмо</h2>
+                <div class="steps-grid">
+                    <div class="step-card">
+                        <div class="step-icon" style="position: relative;">
+                            <i class="fas fa-search"></i>
+                            <div class="step-number">1</div>
+                        </div>
+                        <h3>Поиск талантов</h3>
+                        <p>Используйте удобные фильтры по жанрам, стилям, опыту и доступности для поиска подходящих исполнителей.</p>
+                    </div>
+                    
+                    <div class="step-card">
+                        <div class="step-icon" style="position: relative;">
+                            <i class="fas fa-eye"></i>
+                            <div class="step-number">2</div>
+                        </div>
+                        <h3>Просмотр портфолио</h3>
+                        <p>Изучайте работы художников, читайте отзывы других редакторов, оценивайте стиль и качество.</p>
+                    </div>
+                    
+                    <div class="step-card">
+                        <div class="step-icon" style="position: relative;">
+                            <i class="fas fa-envelope"></i>
+                            <div class="step-number">3</div>
+                        </div>
+                        <h3>Прямая связь</h3>
+                        <p>Связывайтесь с художниками напрямую через контактную информацию. Обсуждайте детали проекта.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Features Section -->
+            <section class="features-section">
+                <div class="container">
+                    <h2 style="text-align: center; margin-bottom: 40px; font-size: 32px; color: #000;">Преимущества платформы</h2>
+                    <div class="features-grid">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-filter"></i>
+                            </div>
+                            <h4>Умные фильтры</h4>
+                            <p>Быстрый поиск по специализациям, жанрам, стилям и уровню опыта</p>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <h4>Система рейтингов</h4>
+                            <p>Честные отзывы и оценки качества работы, коммуникации и соблюдения сроков</p>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <h4>Проверенные профили</h4>
+                            <p>Верификация аккаунтов и портфолио для дополнительного доверия</p>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <h4>Удобный интерфейс</h4>
+                            <p>Простота использования на любых устройствах - компьютер, планшет, телефон</p>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <h4>Статус доступности</h4>
+                            <p>Видите в реальном времени, кто свободен для новых проектов</p>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h4>Аналитика</h4>
+                            <p>Статистика просмотров портфолио и отклики на работы</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA Section -->
+            <section class="cta-section">
+                <h2>Готовы начать?</h2>
+                <p>Присоединяйтесь к растущему сообществу талантливых художников и редакторов</p>
+                <div class="cta-buttons">
+                    <a href="index.html" class="btn-light">
+                        <i class="fas fa-search"></i>
+                        Найти художника
+                    </a>
+                    <button class="btn-light" onclick="openModal('registerModal')">
+                        <i class="fas fa-user-plus"></i>
+                        Стать художником
+                    </button>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Modals -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Вход в систему</h3>
+                <button class="modal-close" onclick="closeModal('loginModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Пароль</label>
+                        <input type="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary full-width">Войти</button>
+                </form>
+                <div class="modal-footer">
+                    <p>Нет аккаунта? <a href="#" onclick="switchModal('loginModal', 'registerModal')">Зарегистрироваться</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="registerModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Регистрация</h3>
+                <button class="modal-close" onclick="closeModal('registerModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label>Тип аккаунта</label>
+                        <select id="userType" onchange="updateRegistrationForm()">
+                            <option value="artist">Творец (дизайнер/иллюстратор)</option>
+                            <option value="editor">Редактор Эксмо</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Имя и фамилия</label>
+                        <input type="text" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Пароль</label>
+                        <input type="password" required>
+                    </div>
+                    <div id="artistFields" class="artist-fields">
+                        <div class="form-group">
+                            <label>Специализация</label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="reg_specialization" value="covers">
+                                    <span>Дизайн обложек</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="reg_specialization" value="illustrations">
+                                    <span>Иллюстрации</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="reg_specialization" value="lettering">
+                                    <span>Леттеринг</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="reg_specialization" value="layout">
+                                    <span>Внутренний макет</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Краткое описание</label>
+                            <textarea placeholder="Расскажите о себе и своем опыте в 2-3 предложениях"></textarea>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary full-width">Зарегистрироваться</button>
+                </form>
+                <div class="modal-footer">
+                    <p>Уже есть аккаунт? <a href="#" onclick="switchModal('registerModal', 'loginModal')">Войти</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/modal.js"></script>
+</body>
+</html>
